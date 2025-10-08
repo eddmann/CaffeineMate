@@ -22,6 +22,20 @@ CaffeineMate prevents your Mac from going to sleep using the same APIs as the bu
 - **Global keyboard shortcut** - Toggle from anywhere
 - **Launch at login** - Start automatically when you log in (macOS 13+)
 
+## Installation
+
+1. Download the latest release
+2. Unzip and move `CaffeineMate.app` to your Applications folder
+3. **Right-click** the app and select **"Open"** (required for unsigned apps)
+
+If you see "CaffeineMate is damaged and can't be opened", run this command in Terminal:
+
+```bash
+xattr -cr /Applications/CaffeineMate.app
+```
+
+Then launch the app normally.
+
 ## Usage
 
 <img src="site/demo.png" width="500">
