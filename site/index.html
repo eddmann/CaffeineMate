@@ -523,7 +523,11 @@
     <header>
       <nav class="container">
         <a href="#" class="logo">
-          <img src="logo.png" alt="CaffeineMate" class="logo-icon" />
+          <img
+            src="logo.png"
+            alt="CaffeineMate app icon - coffee cup logo"
+            class="logo-icon"
+          />
           <span>CaffeineMate</span>
         </a>
         <a
@@ -538,7 +542,11 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="container">
-        <img src="logo.png" alt="CaffeineMate Icon" class="hero-icon" />
+        <img
+          src="logo.png"
+          alt="CaffeineMate app icon - stylized coffee cup representing keep awake functionality"
+          class="hero-icon"
+        />
         <h1>Keep Your Mac Awake</h1>
         <p class="subtitle">
           The elegant menu bar app that prevents your Mac from sleeping
@@ -734,20 +742,6 @@
     </footer>
 
     <script>
-      // Smooth scrolling for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          const href = this.getAttribute('href');
-          if (href !== '#' && document.querySelector(href)) {
-            e.preventDefault();
-            document.querySelector(href).scrollIntoView({
-              behavior: 'smooth',
-              block: 'start',
-            });
-          }
-        });
-      });
-
       // Intersection Observer for fade-in animations
       const observerOptions = {
         threshold: 0.1,
@@ -777,17 +771,6 @@
           heroIcon.style.transform = `translateY(${currentScroll * 0.3}px)`;
         }
         lastScroll = currentScroll;
-      });
-
-      // Menubar preview interaction
-      document.querySelectorAll('.menubar-item').forEach(item => {
-        item.addEventListener('click', function () {
-          if (this.querySelector('.checkmark')) {
-            const checkmark = this.querySelector('.checkmark');
-            checkmark.style.display =
-              checkmark.style.display === 'none' ? 'inline' : 'none';
-          }
-        });
       });
     </script>
   </body>
