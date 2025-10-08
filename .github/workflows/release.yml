@@ -1,0 +1,104 @@
+name: Release CaffeineMate
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number (e.g., 1.0.0)'
+        required: true
+        type: string
+
+jobs:
+  build-and-release:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Update version in project
+        run: |
+          # Update MARKETING_VERSION in project.pbxproj
+          sed -i '' "s/MARKETING_VERSION = [^;]*/MARKETING_VERSION = ${{ inputs.version }}/g" CaffeineMate.xcodeproj/project.pbxproj
+
+          # Extract major version number for CURRENT_PROJECT_VERSION (e.g., 1.0.0 -> 1)
+          BUILD_NUMBER=$(echo "${{ inputs.version }}" | sed 's/[^0-9]*\([0-9]*\).*/\1/')
+          sed -i '' "s/CURRENT_PROJECT_VERSION = [^;]*/CURRENT_PROJECT_VERSION = $BUILD_NUMBER/g" CaffeineMate.xcodeproj/project.pbxproj
+
+          echo "Updated version to ${{ inputs.version }} (build $BUILD_NUMBER)"
+
+      - name: Build app
+        run: |
+          xcodebuild clean build \
+            -project CaffeineMate.xcodeproj \
+            -scheme CaffeineMate \
+            -configuration Release \
+            -derivedDataPath ./build \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Create app bundle ZIP
+        run: |
+          cd build/Build/Products/Release
+          zip -r ../../../../CaffeineMate-${{ inputs.version }}.zip CaffeineMate.app
+          cd ../../../..
+          echo "Created CaffeineMate-${{ inputs.version }}.zip"
+
+      - name: Generate release notes
+        id: release_notes
+        run: |
+          cat > release_notes.md << 'EOF'
+          ## CaffeineMate v${{ inputs.version }}
+
+          ### Installation
+
+          1. Download `CaffeineMate-${{ inputs.version }}.zip`
+          2. Unzip the file
+          3. Move `CaffeineMate.app` to your Applications folder
+          4. Right-click and select "Open" the first time (to bypass Gatekeeper)
+
+          ### Features
+
+          - **One-click toggle** - Keep your Mac awake with a single click
+          - **Duration timer** - Set how long to stay awake (15min, 1hr, 3hrs, custom, or indefinite)
+          - **Display control** - Optionally keep display awake too
+          - **Keyboard shortcuts** - Global shortcuts for quick access
+          - **Launch at login** - Start automatically (macOS 13+)
+
+          ### Requirements
+
+          - macOS 11.0 (Big Sur) or later
+
+          ### Notes
+
+          ⚠️ **Unsigned Build**: This build is not notarized or signed with a Developer ID. You'll need to right-click and select "Open" the first time you run it.
+
+          For keyboard shortcuts, grant Accessibility permissions when prompted in System Settings.
+          EOF
+
+          echo "Generated release notes"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ inputs.version }}
+          name: CaffeineMate v${{ inputs.version }}
+          body_path: release_notes.md
+          files: CaffeineMate-${{ inputs.version }}.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CaffeineMate-${{ inputs.version }}
+          path: CaffeineMate-${{ inputs.version }}.zip
+          retention-days: 90
