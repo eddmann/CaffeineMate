@@ -2,7 +2,7 @@
 
 A simple macOS menu bar app that keeps your Mac awake.
 
-<img src="logo.png" width="200">
+<img src="site/logo.png" width="200">
 
 ## Overview
 
@@ -24,7 +24,7 @@ CaffeineMate prevents your Mac from going to sleep using the same APIs as the bu
 
 ## Usage
 
-<img src="demo.png" width="500">
+<img src="site/demo.png" width="500">
 
 1. **Click the coffee cup icon** in your menu bar to activate/deactivate
 2. **Right-click** to access settings:

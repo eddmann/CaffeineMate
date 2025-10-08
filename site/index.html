@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CaffeineMate - Keep Your Mac Awake</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --dark: #1d1d1f;
+        --light: #f5f5f7;
+        --gray: #86868b;
+        --card-bg: rgba(255, 255, 255, 0.95);
+        --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+          'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: var(--light);
+        color: var(--dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      header {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-block: 14px;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--dark);
+        text-decoration: none;
+      }
+
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      .download-btn {
+        background: var(--primary-gradient);
+        color: white;
+        padding: 12px 30px;
+        margin-block: 14px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 150px 0 100px;
+        text-align: center;
+        background: linear-gradient(180deg, #f5f5f7 0%, #ffffff 100%);
+      }
+
+      .hero-icon {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 30px;
+        animation: float 3s ease-in-out infinite;
+        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      h1 {
+        font-size: 64px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.1;
+      }
+
+      .subtitle {
+        font-size: 28px;
+        color: var(--gray);
+        margin-bottom: 40px;
+        font-weight: 400;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .primary-btn {
+        background: var(--primary-gradient);
+        color: white;
+        padding: 18px 40px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 18px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: var(--shadow);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .primary-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .version {
+        color: var(--gray);
+        font-size: 14px;
+      }
+
+      /* Features Section */
+      .features {
+        padding: 100px 0;
+        background: white;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 60px;
+        color: var(--dark);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+      }
+
+      .feature-card {
+        background: var(--card-bg);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .feature-icon {
+        font-size: 48px;
+        margin-bottom: 20px;
+        display: block;
+      }
+
+      .feature-title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: var(--dark);
+      }
+
+      .feature-description {
+        color: var(--gray);
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      /* How It Works */
+      .how-it-works {
+        padding: 100px 0;
+        background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%);
+      }
+
+      .steps {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 60px;
+        flex-wrap: wrap;
+        gap: 40px;
+      }
+
+      .step {
+        text-align: center;
+        max-width: 300px;
+      }
+
+      .step-number {
+        width: 60px;
+        height: 60px;
+        background: var(--primary-gradient);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        font-weight: 700;
+        margin: 0 auto 20px;
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+      }
+
+      .step-title {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .step-description {
+        color: var(--gray);
+        font-size: 16px;
+      }
+
+      /* CTA Section */
+      .cta {
+        padding: 100px 0;
+        background: var(--primary-gradient);
+        color: white;
+        text-align: center;
+      }
+
+      .cta h2 {
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .cta p {
+        font-size: 24px;
+        margin-bottom: 40px;
+        opacity: 0.9;
+      }
+
+      .cta-btn {
+        background: white;
+        color: #667eea;
+        padding: 18px 40px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 18px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        display: inline-block;
+      }
+
+      .cta-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--dark);
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+      }
+
+      footer p {
+        color: var(--gray);
+      }
+
+      footer a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        transition: opacity 0.3s ease;
+      }
+
+      footer a:hover {
+        opacity: 0.7;
+      }
+
+      /* Animations */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeIn 0.8s ease forwards;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .fade-in:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .fade-in:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .fade-in:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .fade-in:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .fade-in:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 42px;
+        }
+        .subtitle {
+          font-size: 20px;
+        }
+        .section-title {
+          font-size: 36px;
+        }
+        .hero {
+          padding: 120px 0 60px;
+        }
+        .features,
+        .how-it-works,
+        .cta {
+          padding: 60px 0;
+        }
+        .hero-icon {
+          width: 140px;
+          height: 140px;
+        }
+        .steps {
+          flex-direction: column;
+          align-items: center;
+        }
+        .download-btn {
+          display: none;
+        }
+      }
+
+      /* Menu Bar Preview */
+      .menubar-preview {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 40px;
+        margin: 60px auto;
+        max-width: 600px;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .menubar-mockup {
+        background: #f5f5f7;
+        border-radius: 10px;
+        padding: 20px;
+        font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont,
+          sans-serif;
+      }
+
+      .menubar-item {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        margin-bottom: 8px;
+        background: white;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: background 0.2s ease;
+      }
+
+      .menubar-item:hover {
+        background: #e8e8ed;
+      }
+
+      .menubar-item svg {
+        margin-right: 10px;
+      }
+
+      .checkmark {
+        color: #667eea;
+        margin-left: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav class="container">
+        <a href="#" class="logo">
+          <img src="logo.png" alt="CaffeineMate" class="logo-icon" />
+          <span>CaffeineMate</span>
+        </a>
+        <a href="#download" class="download-btn">Download Free</a>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <img src="logo.png" alt="CaffeineMate Icon" class="hero-icon" />
+        <h1>Keep Your Mac Awake</h1>
+        <p class="subtitle">
+          The elegant menu bar app that prevents your Mac from sleeping
+        </p>
+        <div class="hero-buttons">
+          <a href="#download" class="primary-btn">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 14L4 8L5.4 6.6L9 10.2V2H11V10.2L14.6 6.6L16 8L10 14ZM4 18C3.45 18 2.97917 17.8042 2.5875 17.4125C2.19583 17.0208 2 16.55 2 16V13H4V16H16V13H18V16C18 16.55 17.8042 17.0208 17.4125 17.4125C17.0208 17.8042 16.55 18 16 18H4Z"
+                fill="currentColor"
+              />
+            </svg>
+            Download for macOS
+          </a>
+          <span class="version">Free • macOS 11.0+</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <h2 class="section-title">Simple. Powerful. Native.</h2>
+
+        <div class="features-grid">
+          <div class="feature-card fade-in">
+            <span class="feature-icon">⚡</span>
+            <h3 class="feature-title">One-Click Control</h3>
+            <p class="feature-description">
+              Click the menu bar icon to toggle sleep prevention on or off. It's
+              that simple.
+            </p>
+          </div>
+
+          <div class="feature-card fade-in">
+            <span class="feature-icon">⏱️</span>
+            <h3 class="feature-title">Duration Timer</h3>
+            <p class="feature-description">
+              Set a custom duration or keep your Mac awake indefinitely. Watch
+              the countdown right in your menu bar.
+            </p>
+          </div>
+
+          <div class="feature-card fade-in">
+            <span class="feature-icon">🖥️</span>
+            <h3 class="feature-title">Display Control</h3>
+            <p class="feature-description">
+              Choose whether to keep just the system awake or the display too.
+              Perfect for presentations or downloads.
+            </p>
+          </div>
+
+          <div class="feature-card fade-in">
+            <span class="feature-icon">⌨️</span>
+            <h3 class="feature-title">Keyboard Shortcuts</h3>
+            <p class="feature-description">
+              Toggle CaffeineMate instantly with a custom global keyboard
+              shortcut. No need to reach for your mouse.
+            </p>
+          </div>
+
+          <div class="feature-card fade-in">
+            <span class="feature-icon">🚀</span>
+            <h3 class="feature-title">Launch at Login</h3>
+            <p class="feature-description">
+              Start CaffeineMate automatically when you boot your Mac. Always
+              there when you need it.
+            </p>
+          </div>
+
+          <div class="feature-card fade-in">
+            <span class="feature-icon">🎨</span>
+            <h3 class="feature-title">Native & Lightweight</h3>
+            <p class="feature-description">
+              Built with Swift and SwiftUI. Tiny footprint, no bloat, perfectly
+              integrated with macOS.
+            </p>
+          </div>
+        </div>
+
+        <div class="menubar-preview">
+          <h3
+            style="
+              text-align: center;
+              margin-bottom: 20px;
+              font-size: 20px;
+              color: var(--dark);
+            "
+          >
+            Lives in Your Menu Bar
+          </h3>
+          <div
+            style="
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              border-radius: 15px;
+              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            "
+          >
+            <img
+              src="demo.png"
+              alt="CaffeineMate Menu Bar Interface"
+              style="
+                width: 100%;
+                max-width: 660px;
+                display: block;
+                margin: 0 auto;
+                border-radius: 15px;
+              "
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+      <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3 class="step-title">Download & Install</h3>
+            <p class="step-description">
+              Download CaffeineMate and drag it to your Applications folder.
+              Launch it once.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3 class="step-title">Find in Menu Bar</h3>
+            <p class="step-description">
+              Look for the coffee cup icon in your menu bar at the top of your
+              screen.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3 class="step-title">Click to Activate</h3>
+            <p class="step-description">
+              Click the icon to toggle. Customize settings from the menu. That's
+              it!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="download">
+      <div class="container">
+        <h2>Ready to Stay Awake?</h2>
+        <p>
+          Download CaffeineMate today. It's free, open source, and built for
+          Mac.
+        </p>
+        <a href="#" class="cta-btn" onclick="handleDownload(); return false;"
+          >Download CaffeineMate</a
+        >
+        <p style="margin-top: 20px; font-size: 14px; opacity: 0.8">
+          Requires macOS 11.0 (Big Sur) or later
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2025
+          <a href="https://eddmann.com" style="margin: 0; color: inherit"
+            >Edd Mann</a
+          >. Made with ☕ for Mac.
+        </p>
+        <div style="margin-top: 20px">
+          <a href="https://github.com/eddmann/CaffeineMate" target="_blank"
+            >GitHub</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (href !== '#' && document.querySelector(href)) {
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }
+        });
+      });
+
+      // Download handler
+      function handleDownload() {
+        // In production, this would link to your actual download
+        alert(
+          'Download functionality would be implemented here.\n\nIn production, this would:\n1. Track the download event\n2. Redirect to the latest release\n3. Or trigger a direct download of the .dmg file'
+        );
+      }
+
+      // Intersection Observer for fade-in animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      };
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      // Observe all fade-in elements
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Add parallax effect to hero icon
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        const heroIcon = document.querySelector('.hero-icon');
+        if (heroIcon && currentScroll < 500) {
+          heroIcon.style.transform = `translateY(${currentScroll * 0.3}px)`;
+        }
+        lastScroll = currentScroll;
+      });
+
+      // Menubar preview interaction
+      document.querySelectorAll('.menubar-item').forEach(item => {
+        item.addEventListener('click', function () {
+          if (this.querySelector('.checkmark')) {
+            const checkmark = this.querySelector('.checkmark');
+            checkmark.style.display =
+              checkmark.style.display === 'none' ? 'inline' : 'none';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
