@@ -1,6 +1,6 @@
-<img src="site/logo.png" width="200">
-
 # CaffeineMate
+
+![CaffeineMate](docs/heading.png)
 
 A simple macOS menu bar app that keeps your Mac awake.
 
