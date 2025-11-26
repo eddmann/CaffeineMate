@@ -26,15 +26,9 @@ When active:
 
 1. Download the latest release
 2. Unzip and move `CaffeineMate.app` to your Applications folder
-3. **Right-click** the app and select **"Open"** (required for unsigned apps)
+3. Double-click to open
 
-If you see "CaffeineMate is damaged and can't be opened", run this command in Terminal:
-
-```bash
-xattr -cr /Applications/CaffeineMate.app
-```
-
-Then launch the app normally.
+The app is signed and notarized by Apple, so it will open without any security warnings.
 
 ## Usage
 

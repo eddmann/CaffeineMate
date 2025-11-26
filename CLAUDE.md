@@ -69,3 +69,10 @@ CaffeineMate is a macOS menu bar application that prevents the system from going
 - **App Sandbox**: Enabled (`ENABLE_APP_SANDBOX = YES`)
 - **Hardened Runtime**: Enabled
 - Menu bar app (LSUIElement = YES) - no Dock icon, only status bar presence
+
+## Code Signing & Distribution
+
+- **Signed**: Developer ID Application certificate
+- **Notarized**: Submitted to Apple for notarization via App Store Connect API
+- **Stapled**: Notarization ticket stapled to the app bundle
+- GitHub Actions workflow handles signing, notarization, and release creation
