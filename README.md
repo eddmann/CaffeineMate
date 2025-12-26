@@ -24,7 +24,15 @@ When active:
 
 ## Installation
 
-1. Download the latest release
+### Homebrew (Recommended)
+
+```bash
+brew install eddmann/tap/caffeinemate
+```
+
+### Manual Download
+
+1. Download the latest release from [GitHub Releases](https://github.com/eddmann/CaffeineMate/releases)
 2. Unzip and move `CaffeineMate.app` to your Applications folder
 3. Double-click to open
 
