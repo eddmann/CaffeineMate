@@ -60,6 +60,14 @@
     }
     </script>
 
+    <!-- Theme flash prevention -->
+    <script>
+        if (localStorage.getItem('theme-preference') === 'dark' ||
+            (!localStorage.getItem('theme-preference') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,6 +75,7 @@
 
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -95,6 +104,10 @@
             min-height: 100vh;
         }
 
+        html.dark body {
+            background: linear-gradient(165deg, #0f172a 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
         .glass-card {
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(20px);
@@ -113,6 +126,28 @@
                 0 10px 15px -3px rgba(0, 0, 0, 0.06),
                 0 20px 25px -5px rgba(0, 0, 0, 0.04),
                 0 25px 50px -12px rgba(0, 0, 0, 0.06);
+        }
+
+        html.dark .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        html.dark .glass-card:hover {
+            background: rgba(30, 41, 59, 0.85);
+            box-shadow:
+                0 20px 40px rgba(93, 113, 134, 0.15),
+                0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark .bg-pattern {
+            background-color: #0f172a;
+            background-image:
+                linear-gradient(165deg, #0f172a 0%, #1a1a2e 50%, #16213e 100%),
+                radial-gradient(circle at 20% 30%, rgba(93, 113, 134, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(100, 80, 60, 0.06) 0%, transparent 50%);
+            background-blend-mode: normal, overlay, overlay;
         }
 
         .accent-gradient {
@@ -206,7 +241,18 @@
         }
     </style>
 </head>
-<body class="min-h-screen antialiased bg-pattern">
+<body class="min-h-screen antialiased bg-pattern text-slate-dark dark:text-slate-200">
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" onclick="toggleTheme()"
+        class="fixed top-6 right-6 z-50 p-3 rounded-2xl bg-white/70 dark:bg-slate-800/70 backdrop-blur-lg border border-slate-blue/20 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300"
+        aria-label="Toggle dark mode">
+        <svg class="w-5 h-5 text-slate-blue dark:text-slate-300 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg class="w-5 h-5 text-slate-blue dark:text-slate-300 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+    </button>
 
     <!-- Hero Section -->
     <section class="min-h-screen flex flex-col items-center justify-center px-6 py-20 relative overflow-hidden">
@@ -225,13 +271,13 @@
             </div>
 
             <!-- Headline -->
-            <h1 class="font-display text-5xl md:text-7xl font-semibold text-slate-dark mb-6 animate-fade-in-up stagger-2 tracking-tight">
+            <h1 class="font-display text-5xl md:text-7xl font-semibold text-slate-dark dark:text-white mb-6 animate-fade-in-up stagger-2 tracking-tight">
                 Keep Your Mac<br>
-                <span class="text-slate-blue">Awake</span>
+                <span class="text-slate-blue dark:text-slate-light">Awake</span>
             </h1>
 
             <!-- Tagline -->
-            <p class="text-xl md:text-2xl text-slate-blue/80 mb-10 max-w-2xl mx-auto font-body animate-fade-in-up stagger-3 leading-relaxed">
+            <p class="text-xl md:text-2xl text-slate-blue/80 dark:text-slate-light/80 mb-10 max-w-2xl mx-auto font-body animate-fade-in-up stagger-3 leading-relaxed">
                 The elegant menu bar app that prevents your Mac from sleeping. Simple, native, and lightweight.
             </p>
 
@@ -245,7 +291,7 @@
                     Download for macOS
                 </a>
                 <a href="https://github.com/eddmann/CaffeineMate"
-                   class="px-8 py-4 text-lg font-semibold text-slate-dark hover:text-slate-blue transition-colors flex items-center gap-3 border border-slate-blue/20 rounded-2xl hover:border-slate-blue/40 bg-white/50 backdrop-blur">
+                   class="px-8 py-4 text-lg font-semibold text-slate-dark dark:text-slate-light hover:text-slate-blue dark:hover:text-white transition-colors flex items-center gap-3 border border-slate-blue/20 dark:border-slate-700 rounded-2xl hover:border-slate-blue/40 dark:hover:border-slate-600 bg-white/50 dark:bg-slate-800/50 backdrop-blur">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
@@ -254,7 +300,7 @@
             </div>
 
             <!-- macOS Badge -->
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur border border-slate-blue/10 text-sm text-slate-blue animate-fade-in-up stagger-5">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 dark:bg-slate-800/60 backdrop-blur border border-slate-blue/10 dark:border-slate-700 text-sm text-slate-blue dark:text-slate-light animate-fade-in-up stagger-5">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                 </svg>
@@ -264,7 +310,7 @@
 
         <!-- Scroll indicator -->
         <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-pulse-slow">
-            <svg class="w-6 h-6 text-slate-blue/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 text-slate-blue/40 dark:text-slate-light/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
             </svg>
         </div>
@@ -274,10 +320,10 @@
     <section class="py-24 px-6">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="font-display text-3xl md:text-4xl font-semibold text-slate-dark mb-4">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-slate-dark dark:text-white mb-4">
                     Everything you need, nothing you don't
                 </h2>
-                <p class="text-xl text-slate-blue/70 max-w-2xl mx-auto">
+                <p class="text-xl text-slate-blue/70 dark:text-slate-light/70 max-w-2xl mx-auto">
                     Built for simplicity. Designed to stay out of your way.
                 </p>
             </div>
@@ -290,8 +336,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                         </svg>
                     </div>
-                    <h3 class="font-display text-xl font-semibold text-slate-dark mb-3">One-Click Toggle</h3>
-                    <p class="text-slate-blue/70 leading-relaxed">
+                    <h3 class="font-display text-xl font-semibold text-slate-dark dark:text-white mb-3">One-Click Toggle</h3>
+                    <p class="text-slate-blue/70 dark:text-slate-light/70 leading-relaxed">
                         Click the menu bar icon to instantly toggle. No complicated menus or settings required.
                     </p>
                 </div>
@@ -303,8 +349,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
-                    <h3 class="font-display text-xl font-semibold text-slate-dark mb-3">Duration Timer</h3>
-                    <p class="text-slate-blue/70 leading-relaxed">
+                    <h3 class="font-display text-xl font-semibold text-slate-dark dark:text-white mb-3">Duration Timer</h3>
+                    <p class="text-slate-blue/70 dark:text-slate-light/70 leading-relaxed">
                         Set for 15 minutes, 1 hour, 3 hours, custom duration, or keep it running indefinitely.
                     </p>
                 </div>
@@ -316,8 +362,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
                     </div>
-                    <h3 class="font-display text-xl font-semibold text-slate-dark mb-3">Display Control</h3>
-                    <p class="text-slate-blue/70 leading-relaxed">
+                    <h3 class="font-display text-xl font-semibold text-slate-dark dark:text-white mb-3">Display Control</h3>
+                    <p class="text-slate-blue/70 dark:text-slate-light/70 leading-relaxed">
                         Keep the system awake or prevent the display from sleeping too. Complete control is yours.
                     </p>
                 </div>
@@ -329,8 +375,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
                         </svg>
                     </div>
-                    <h3 class="font-display text-xl font-semibold text-slate-dark mb-3">Global Shortcuts</h3>
-                    <p class="text-slate-blue/70 leading-relaxed">
+                    <h3 class="font-display text-xl font-semibold text-slate-dark dark:text-white mb-3">Global Shortcuts</h3>
+                    <p class="text-slate-blue/70 dark:text-slate-light/70 leading-relaxed">
                         Configure custom keyboard shortcuts to toggle CaffeineMate from anywhere on your Mac.
                     </p>
                 </div>
@@ -342,8 +388,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                         </svg>
                     </div>
-                    <h3 class="font-display text-xl font-semibold text-slate-dark mb-3">Launch at Login</h3>
-                    <p class="text-slate-blue/70 leading-relaxed">
+                    <h3 class="font-display text-xl font-semibold text-slate-dark dark:text-white mb-3">Launch at Login</h3>
+                    <p class="text-slate-blue/70 dark:text-slate-light/70 leading-relaxed">
                         Start automatically when you log in. Always ready when you need it, invisible when you don't.
                     </p>
                 </div>
@@ -355,8 +401,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
                         </svg>
                     </div>
-                    <h3 class="font-display text-xl font-semibold text-slate-dark mb-3">Native & Lightweight</h3>
-                    <p class="text-slate-blue/70 leading-relaxed">
+                    <h3 class="font-display text-xl font-semibold text-slate-dark dark:text-white mb-3">Native & Lightweight</h3>
+                    <p class="text-slate-blue/70 dark:text-slate-light/70 leading-relaxed">
                         Built with Swift and SwiftUI. No Electron, no bloat. Just a tiny, efficient native app.
                     </p>
                 </div>
@@ -368,10 +414,10 @@
     <section id="installation" class="py-24 px-6">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-12">
-                <h2 class="font-display text-3xl md:text-4xl font-semibold text-slate-dark mb-4">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-slate-dark dark:text-white mb-4">
                     Install in seconds
                 </h2>
-                <p class="text-xl text-slate-blue/70">
+                <p class="text-xl text-slate-blue/70 dark:text-slate-light/70">
                     Get started with a single command using Homebrew
                 </p>
             </div>
@@ -411,33 +457,33 @@
                 </div>
             </div>
 
-            <p class="text-center mt-8 text-slate-blue/60 text-sm">
+            <p class="text-center mt-8 text-slate-blue/60 dark:text-slate-light/60 text-sm">
                 Or download directly from
-                <a href="https://github.com/eddmann/CaffeineMate/releases" class="text-slate-blue hover:text-slate-dark underline underline-offset-2 transition-colors">GitHub Releases</a>
+                <a href="https://github.com/eddmann/CaffeineMate/releases" class="text-slate-blue dark:text-slate-light hover:text-slate-dark dark:hover:text-white underline underline-offset-2 transition-colors">GitHub Releases</a>
             </p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 px-6 border-t border-slate-blue/10">
+    <footer class="py-12 px-6 border-t border-slate-blue/10 dark:border-slate-700">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-3">
                 <img src="logo.png" alt="CaffeineMate" class="w-9 h-9 rounded-xl">
-                <span class="font-display font-semibold text-slate-dark text-lg">CaffeineMate</span>
+                <span class="font-display font-semibold text-slate-dark dark:text-white text-lg">CaffeineMate</span>
             </div>
 
             <div class="flex items-center gap-6">
-                <a href="https://github.com/eddmann/CaffeineMate" class="flex items-center gap-2 text-slate-blue/60 hover:text-slate-dark transition-colors">
+                <a href="https://github.com/eddmann/CaffeineMate" class="flex items-center gap-2 text-slate-blue/60 dark:text-slate-light/60 hover:text-slate-dark dark:hover:text-white transition-colors">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
                     <span class="text-sm font-medium">GitHub</span>
                 </a>
 
-                <span class="text-slate-blue/20">|</span>
+                <span class="text-slate-blue/20 dark:text-slate-600">|</span>
 
-                <span class="text-slate-blue/60 text-sm">
-                    Made by <a href="https://eddmann.com" class="text-slate-blue hover:text-slate-dark font-medium transition-colors">Edd Mann</a>
+                <span class="text-slate-blue/60 dark:text-slate-light/60 text-sm">
+                    Made by <a href="https://eddmann.com" class="text-slate-blue dark:text-slate-light hover:text-slate-dark dark:hover:text-white font-medium transition-colors">Edd Mann</a>
                 </span>
             </div>
         </div>
@@ -480,6 +526,36 @@
         document.querySelectorAll('.opacity-0-initial').forEach(el => {
             observer.observe(el);
         });
+
+        // Theme toggle
+        (function() {
+            const STORAGE_KEY = 'theme-preference';
+
+            function getThemePreference() {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) return stored;
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+
+            function setTheme(theme) {
+                document.documentElement.classList.toggle('dark', theme === 'dark');
+            }
+
+            setTheme(getThemePreference());
+
+            window.toggleTheme = function() {
+                const current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+                const next = current === 'dark' ? 'light' : 'dark';
+                localStorage.setItem(STORAGE_KEY, next);
+                setTheme(next);
+            };
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                if (!localStorage.getItem(STORAGE_KEY)) {
+                    setTheme(e.matches ? 'dark' : 'light');
+                }
+            });
+        })();
     </script>
 </body>
 </html>
