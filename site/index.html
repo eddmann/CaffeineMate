@@ -1,777 +1,485 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>
-      CaffeineMate - Keep Your Mac Awake | Free Menu Bar App for macOS
-    </title>
-    <meta
-      name="title"
-      content="CaffeineMate - Keep Your Mac Awake | Free Menu Bar App for macOS"
-    />
-    <meta
-      name="description"
-      content="CaffeineMate is a free, lightweight macOS menu bar app that prevents your Mac from sleeping. One-click control, duration timers, keyboard shortcuts, and display control. Works natively on macOS 11.0+."
-    />
-    <meta
-      name="keywords"
-      content="CaffeineMate, caffeinate, mac stay awake, prevent mac sleep, menu bar app, macOS utility, keep display awake, mac app, sleep prevention"
-    />
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content="Edd Mann" />
-    <meta name="theme-color" content="#667eea" />
+    <title>CaffeineMate - Keep Your Mac Awake | macOS Menu Bar App</title>
+    <meta name="title" content="CaffeineMate - Keep Your Mac Awake | macOS Menu Bar App">
+    <meta name="description" content="CaffeineMate is a free, lightweight macOS menu bar app that prevents your Mac from sleeping. One-click control, duration timers, keyboard shortcuts, and display control. Works natively on macOS 11.0+.">
+    <meta name="keywords" content="CaffeineMate, caffeinate, mac stay awake, prevent mac sleep, menu bar app, macOS utility, keep display awake, mac app, sleep prevention">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Edd Mann">
+    <meta name="theme-color" content="#5d7186">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://eddmann.com/CaffeineMate/" />
+    <link rel="canonical" href="https://eddmann.com/CaffeineMate/">
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" href="logo.png" />
-    <link rel="apple-touch-icon" href="logo.png" />
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://eddmann.com/CaffeineMate/" />
-    <meta property="og:title" content="CaffeineMate - Keep Your Mac Awake" />
-    <meta
-      property="og:description"
-      content="Free macOS menu bar app that prevents your Mac from sleeping. One-click control, duration timers, and keyboard shortcuts. Native & lightweight."
-    />
-    <meta
-      property="og:image"
-      content="https://eddmann.com/CaffeineMate/demo.png"
-    />
-    <meta property="og:site_name" content="CaffeineMate" />
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eddmann.com/CaffeineMate/">
+    <meta property="og:title" content="CaffeineMate - Keep Your Mac Awake">
+    <meta property="og:description" content="Free macOS menu bar app that prevents your Mac from sleeping. One-click control, duration timers, and keyboard shortcuts. Native & lightweight.">
+    <meta property="og:image" content="https://eddmann.com/CaffeineMate/preview.png">
+    <meta property="og:site_name" content="CaffeineMate">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://eddmann.com/CaffeineMate/" />
-    <meta
-      property="twitter:title"
-      content="CaffeineMate - Keep Your Mac Awake"
-    />
-    <meta
-      property="twitter:description"
-      content="Free macOS menu bar app that prevents your Mac from sleeping. One-click control, duration timers, and keyboard shortcuts."
-    />
-    <meta
-      property="twitter:image"
-      content="https://eddmann.com/CaffeineMate/demo.png"
-    />
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://eddmann.com/CaffeineMate/">
+    <meta property="twitter:title" content="CaffeineMate - Keep Your Mac Awake">
+    <meta property="twitter:description" content="Free macOS menu bar app that prevents your Mac from sleeping. One-click control, duration timers, and keyboard shortcuts.">
+    <meta property="twitter:image" content="https://eddmann.com/CaffeineMate/preview.png">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-      {
+    {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "CaffeineMate",
         "operatingSystem": "macOS 11.0 or later",
         "applicationCategory": "UtilitiesApplication",
         "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
         },
         "description": "A simple macOS menu bar app that keeps your Mac awake. Prevents system sleep with one-click control, duration timers, and keyboard shortcuts.",
-        "downloadUrl": "https://github.com/eddmann/CaffeineMate/releases/tag/v1.0.0",
+        "downloadUrl": "https://github.com/eddmann/CaffeineMate/releases/latest",
         "softwareVersion": "1.0.0",
         "author": {
-          "@type": "Person",
-          "name": "Edd Mann"
+            "@type": "Person",
+            "name": "Edd Mann"
         },
         "image": "https://eddmann.com/CaffeineMate/logo.png",
-        "screenshot": "https://eddmann.com/CaffeineMate/demo.png"
-      }
+        "screenshot": "https://eddmann.com/CaffeineMate/preview.png"
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Fraunces', 'Georgia', 'serif'],
+                        'body': ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            blue: '#5d7186',
+                            dark: '#3d4f5f',
+                            light: '#8fa3b5',
+                        }
+                    },
+                },
+            },
+        }
     </script>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      :root {
-        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        --dark: #1d1d1f;
-        --light: #f5f5f7;
-        --gray: #86868b;
-        --card-bg: rgba(255, 255, 255, 0.95);
-        --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
-      }
-
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
-          'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        background: var(--light);
-        color: var(--dark);
-        line-height: 1.6;
-        overflow-x: hidden;
-      }
-
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      /* Header */
-      header {
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      }
-
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 0;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-block: 14px;
-        font-size: 24px;
-        font-weight: 600;
-        color: var(--dark);
-        text-decoration: none;
-      }
-
-      .logo-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        object-fit: cover;
-      }
-
-      .download-btn {
-        background: var(--primary-gradient);
-        color: white;
-        padding: 12px 30px;
-        margin-block: 14px;
-        border-radius: 25px;
-        text-decoration: none;
-        font-weight: 500;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-      }
-
-      .download-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-      }
-
-      /* Hero Section */
-      .hero {
-        padding: 150px 0 100px;
-        text-align: center;
-        background: linear-gradient(180deg, #f5f5f7 0%, #ffffff 100%);
-      }
-
-      .hero-icon {
-        width: 180px;
-        height: 180px;
-        margin: 0 auto 30px;
-        animation: float 3s ease-in-out infinite;
-        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px);
+        html, body {
+            overflow-x: hidden;
         }
-        50% {
-          transform: translateY(-10px);
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            background: linear-gradient(165deg, #dfe9f2 0%, #ebe5dc 50%, #f5efe8 100%);
+            min-height: 100vh;
         }
-      }
 
-      h1 {
-        font-size: 64px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        background: var(--primary-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        line-height: 1.1;
-      }
-
-      .subtitle {
-        font-size: 28px;
-        color: var(--gray);
-        margin-bottom: 40px;
-        font-weight: 400;
-      }
-
-      .hero-buttons {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-
-      .primary-btn {
-        background: var(--primary-gradient);
-        color: white;
-        padding: 18px 40px;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 18px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: var(--shadow);
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .primary-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: var(--shadow-lg);
-      }
-
-      .version {
-        color: var(--gray);
-        font-size: 14px;
-      }
-
-      /* Features Section */
-      .features {
-        padding: 100px 0;
-        background: white;
-      }
-
-      .section-title {
-        text-align: center;
-        font-size: 48px;
-        font-weight: 700;
-        margin-bottom: 60px;
-        color: var(--dark);
-      }
-
-      .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        margin-top: 60px;
-      }
-
-      .feature-card {
-        background: var(--card-bg);
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: var(--shadow);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-      }
-
-      .feature-card:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-lg);
-      }
-
-      .feature-icon {
-        font-size: 48px;
-        margin-bottom: 20px;
-        display: block;
-      }
-
-      .feature-title {
-        font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 15px;
-        color: var(--dark);
-      }
-
-      .feature-description {
-        color: var(--gray);
-        font-size: 16px;
-        line-height: 1.6;
-      }
-
-      /* How It Works */
-      .how-it-works {
-        padding: 100px 0;
-        background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%);
-      }
-
-      .steps {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 60px;
-        flex-wrap: wrap;
-        gap: 40px;
-      }
-
-      .step {
-        text-align: center;
-        max-width: 300px;
-      }
-
-      .step-number {
-        width: 60px;
-        height: 60px;
-        background: var(--primary-gradient);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
-        font-weight: 700;
-        margin: 0 auto 20px;
-        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-      }
-
-      .step-title {
-        font-size: 22px;
-        font-weight: 600;
-        margin-bottom: 10px;
-      }
-
-      .step-description {
-        color: var(--gray);
-        font-size: 16px;
-      }
-
-      /* CTA Section */
-      .cta {
-        padding: 100px 0;
-        background: var(--primary-gradient);
-        color: white;
-        text-align: center;
-      }
-
-      .cta h2 {
-        font-size: 48px;
-        font-weight: 700;
-        margin-bottom: 20px;
-      }
-
-      .cta p {
-        font-size: 24px;
-        margin-bottom: 40px;
-        opacity: 0.9;
-      }
-
-      .cta-btn {
-        background: white;
-        color: #667eea;
-        padding: 18px 40px;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 18px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        display: inline-block;
-      }
-
-      .cta-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-      }
-
-      /* Footer */
-      footer {
-        background: var(--dark);
-        color: white;
-        padding: 40px 0;
-        text-align: center;
-      }
-
-      footer p {
-        color: var(--gray);
-      }
-
-      footer a {
-        color: white;
-        text-decoration: none;
-        margin: 0 15px;
-        transition: opacity 0.3s ease;
-      }
-
-      footer a:hover {
-        opacity: 0.7;
-      }
-
-      /* Animations */
-      .fade-in {
-        opacity: 0;
-        transform: translateY(30px);
-        animation: fadeIn 0.8s ease forwards;
-      }
-
-      @keyframes fadeIn {
-        to {
-          opacity: 1;
-          transform: translateY(0);
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow:
+                0 4px 6px -1px rgba(0, 0, 0, 0.04),
+                0 10px 15px -3px rgba(0, 0, 0, 0.04),
+                0 20px 25px -5px rgba(0, 0, 0, 0.02);
         }
-      }
 
-      .fade-in:nth-child(1) {
-        animation-delay: 0.1s;
-      }
-      .fade-in:nth-child(2) {
-        animation-delay: 0.2s;
-      }
-      .fade-in:nth-child(3) {
-        animation-delay: 0.3s;
-      }
-      .fade-in:nth-child(4) {
-        animation-delay: 0.4s;
-      }
-      .fade-in:nth-child(5) {
-        animation-delay: 0.5s;
-      }
-      .fade-in:nth-child(6) {
-        animation-delay: 0.6s;
-      }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.75);
+            transform: translateY(-4px);
+            box-shadow:
+                0 10px 15px -3px rgba(0, 0, 0, 0.06),
+                0 20px 25px -5px rgba(0, 0, 0, 0.04),
+                0 25px 50px -12px rgba(0, 0, 0, 0.06);
+        }
 
-      /* Responsive */
-      @media (max-width: 768px) {
-        h1 {
-          font-size: 42px;
+        .accent-gradient {
+            background: linear-gradient(135deg, #5d7186 0%, #7a91a5 100%);
         }
-        .subtitle {
-          font-size: 20px;
-        }
-        .section-title {
-          font-size: 36px;
-        }
-        .hero {
-          padding: 120px 0 60px;
-        }
-        .features,
-        .how-it-works,
-        .cta {
-          padding: 60px 0;
-        }
-        .hero-icon {
-          width: 140px;
-          height: 140px;
-        }
-        .steps {
-          flex-direction: column;
-          align-items: center;
-        }
-        .download-btn {
-          display: none;
-        }
-      }
 
-      /* Menu Bar Preview */
-      .menubar-preview {
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 20px;
-        padding: 40px;
-        margin: 60px auto;
-        max-width: 600px;
-        box-shadow: var(--shadow-lg);
-        border: 1px solid rgba(0, 0, 0, 0.05);
-      }
+        .terminal {
+            background: linear-gradient(180deg, #3d4f5f 0%, #2d3d4a 100%);
+            font-family: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+            box-shadow:
+                0 25px 50px -12px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
 
-      .menubar-mockup {
-        background: #f5f5f7;
-        border-radius: 10px;
-        padding: 20px;
-        font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont,
-          sans-serif;
-      }
+        .terminal-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
 
-      .menubar-item {
-        display: flex;
-        align-items: center;
-        padding: 8px 12px;
-        margin-bottom: 8px;
-        background: white;
-        border-radius: 6px;
-        font-size: 14px;
-        transition: background 0.2s ease;
-      }
+        .app-icon-wrapper {
+            filter: drop-shadow(0 24px 48px rgba(93, 113, 134, 0.25));
+        }
 
-      .menubar-item:hover {
-        background: #e8e8ed;
-      }
+        .feature-icon {
+            background: linear-gradient(135deg, rgba(93, 113, 134, 0.1) 0%, rgba(122, 145, 165, 0.08) 100%);
+        }
 
-      .menubar-item svg {
-        margin-right: 10px;
-      }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
 
-      .checkmark {
-        color: #667eea;
-        margin-left: auto;
-      }
+        .opacity-0-initial { opacity: 0; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Stagger classes MUST come after animate-fade-in-up */
+        .stagger-1 { animation-delay: 0.1s !important; }
+        .stagger-2 { animation-delay: 0.2s !important; }
+        .stagger-3 { animation-delay: 0.3s !important; }
+        .stagger-4 { animation-delay: 0.4s !important; }
+        .stagger-5 { animation-delay: 0.5s !important; }
+        .stagger-6 { animation-delay: 0.6s !important; }
+
+        /* Decorative background */
+        .bg-pattern {
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(93, 113, 134, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(200, 180, 160, 0.05) 0%, transparent 50%);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-float,
+            .animate-fade-in-up,
+            [class*="stagger-"] {
+                animation: none !important;
+            }
+            .opacity-0-initial {
+                opacity: 1;
+            }
+            .glass-card:hover {
+                transform: none;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <!-- Header -->
-    <header>
-      <nav class="container">
-        <a href="#" class="logo">
-          <img
-            src="logo.png"
-            alt="CaffeineMate app icon - coffee cup logo"
-            class="logo-icon"
-          />
-          <span>CaffeineMate</span>
-        </a>
-        <a
-          href="https://github.com/eddmann/CaffeineMate/releases/tag/v1.0.0"
-          class="download-btn"
-          target="_blank"
-          >Download Free</a
-        >
-      </nav>
-    </header>
+</head>
+<body class="min-h-screen antialiased bg-pattern">
 
     <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <img
-          src="logo.png"
-          alt="CaffeineMate app icon - stylized coffee cup representing keep awake functionality"
-          class="hero-icon"
-        />
-        <h1>Keep Your Mac Awake</h1>
-        <p class="subtitle">
-          The elegant menu bar app that prevents your Mac from sleeping
-        </p>
-        <div class="hero-buttons">
-          <a
-            href="https://github.com/eddmann/CaffeineMate/releases/tag/v1.0.0"
-            class="primary-btn"
-            target="_blank"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10 14L4 8L5.4 6.6L9 10.2V2H11V10.2L14.6 6.6L16 8L10 14ZM4 18C3.45 18 2.97917 17.8042 2.5875 17.4125C2.19583 17.0208 2 16.55 2 16V13H4V16H16V13H18V16C18 16.55 17.8042 17.0208 17.4125 17.4125C17.0208 17.8042 16.55 18 16 18H4Z"
-                fill="currentColor"
-              />
-            </svg>
-            Download for macOS
-          </a>
-          <span class="version">Free • macOS 11.0+</span>
+    <section class="min-h-screen flex flex-col items-center justify-center px-6 py-20 relative overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute -top-40 -right-40 w-96 h-96 bg-slate-blue/5 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-amber-200/10 rounded-full blur-3xl"></div>
         </div>
-      </div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <!-- App Icon -->
+            <div class="mb-12 animate-fade-in-up stagger-1">
+                <div class="app-icon-wrapper inline-block animate-float">
+                    <img src="logo.png" alt="CaffeineMate" class="w-36 h-36 md:w-44 md:h-44 rounded-[28%]">
+                </div>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="font-display text-5xl md:text-7xl font-semibold text-slate-dark mb-6 animate-fade-in-up stagger-2 tracking-tight">
+                Keep Your Mac<br>
+                <span class="text-slate-blue">Awake</span>
+            </h1>
+
+            <!-- Tagline -->
+            <p class="text-xl md:text-2xl text-slate-blue/80 mb-10 max-w-2xl mx-auto font-body animate-fade-in-up stagger-3 leading-relaxed">
+                The elegant menu bar app that prevents your Mac from sleeping. Simple, native, and lightweight.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 animate-fade-in-up stagger-4">
+                <a href="#installation"
+                   class="accent-gradient text-white font-body font-semibold px-8 py-4 rounded-2xl text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                    </svg>
+                    Download for macOS
+                </a>
+                <a href="https://github.com/eddmann/CaffeineMate"
+                   class="px-8 py-4 text-lg font-semibold text-slate-dark hover:text-slate-blue transition-colors flex items-center gap-3 border border-slate-blue/20 rounded-2xl hover:border-slate-blue/40 bg-white/50 backdrop-blur">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    View on GitHub
+                </a>
+            </div>
+
+            <!-- macOS Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur border border-slate-blue/10 text-sm text-slate-blue animate-fade-in-up stagger-5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+                Requires macOS 11.0+
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-pulse-slow">
+            <svg class="w-6 h-6 text-slate-blue/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features">
-      <div class="container">
-        <h2 class="section-title">Simple. Powerful. Native.</h2>
+    <section class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-slate-dark mb-4">
+                    Everything you need, nothing you don't
+                </h2>
+                <p class="text-xl text-slate-blue/70 max-w-2xl mx-auto">
+                    Built for simplicity. Designed to stay out of your way.
+                </p>
+            </div>
 
-        <div class="features-grid">
-          <div class="feature-card fade-in">
-            <span class="feature-icon">⚡</span>
-            <h3 class="feature-title">One-Click Control</h3>
-            <p class="feature-description">
-              Click the menu bar icon to toggle sleep prevention on or off. It's
-              that simple.
-            </p>
-          </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Feature 1: One-Click Toggle -->
+                <div class="glass-card rounded-3xl p-8 transition-all duration-300 opacity-0-initial stagger-1">
+                    <div class="feature-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-slate-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold text-slate-dark mb-3">One-Click Toggle</h3>
+                    <p class="text-slate-blue/70 leading-relaxed">
+                        Click the menu bar icon to instantly toggle. No complicated menus or settings required.
+                    </p>
+                </div>
 
-          <div class="feature-card fade-in">
-            <span class="feature-icon">⏱️</span>
-            <h3 class="feature-title">Duration Timer</h3>
-            <p class="feature-description">
-              Set a custom duration or keep your Mac awake indefinitely. Watch
-              the countdown right in your menu bar.
-            </p>
-          </div>
+                <!-- Feature 2: Duration Timer -->
+                <div class="glass-card rounded-3xl p-8 transition-all duration-300 opacity-0-initial stagger-2">
+                    <div class="feature-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-slate-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold text-slate-dark mb-3">Duration Timer</h3>
+                    <p class="text-slate-blue/70 leading-relaxed">
+                        Set for 15 minutes, 1 hour, 3 hours, custom duration, or keep it running indefinitely.
+                    </p>
+                </div>
 
-          <div class="feature-card fade-in">
-            <span class="feature-icon">🖥️</span>
-            <h3 class="feature-title">Display Control</h3>
-            <p class="feature-description">
-              Choose whether to keep just the system awake or the display too.
-              Perfect for presentations or downloads.
-            </p>
-          </div>
+                <!-- Feature 3: Display Control -->
+                <div class="glass-card rounded-3xl p-8 transition-all duration-300 opacity-0-initial stagger-3">
+                    <div class="feature-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-slate-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold text-slate-dark mb-3">Display Control</h3>
+                    <p class="text-slate-blue/70 leading-relaxed">
+                        Keep the system awake or prevent the display from sleeping too. Complete control is yours.
+                    </p>
+                </div>
 
-          <div class="feature-card fade-in">
-            <span class="feature-icon">⌨️</span>
-            <h3 class="feature-title">Keyboard Shortcuts</h3>
-            <p class="feature-description">
-              Toggle CaffeineMate instantly with a custom global keyboard
-              shortcut. No need to reach for your mouse.
-            </p>
-          </div>
+                <!-- Feature 4: Keyboard Shortcuts -->
+                <div class="glass-card rounded-3xl p-8 transition-all duration-300 opacity-0-initial stagger-4">
+                    <div class="feature-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-slate-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold text-slate-dark mb-3">Global Shortcuts</h3>
+                    <p class="text-slate-blue/70 leading-relaxed">
+                        Configure custom keyboard shortcuts to toggle CaffeineMate from anywhere on your Mac.
+                    </p>
+                </div>
 
-          <div class="feature-card fade-in">
-            <span class="feature-icon">🚀</span>
-            <h3 class="feature-title">Launch at Login</h3>
-            <p class="feature-description">
-              Start CaffeineMate automatically when you boot your Mac. Always
-              there when you need it.
-            </p>
-          </div>
+                <!-- Feature 5: Launch at Login -->
+                <div class="glass-card rounded-3xl p-8 transition-all duration-300 opacity-0-initial stagger-5">
+                    <div class="feature-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-slate-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold text-slate-dark mb-3">Launch at Login</h3>
+                    <p class="text-slate-blue/70 leading-relaxed">
+                        Start automatically when you log in. Always ready when you need it, invisible when you don't.
+                    </p>
+                </div>
 
-          <div class="feature-card fade-in">
-            <span class="feature-icon">🎨</span>
-            <h3 class="feature-title">Native & Lightweight</h3>
-            <p class="feature-description">
-              Built with Swift and SwiftUI. Tiny footprint, no bloat, perfectly
-              integrated with macOS.
-            </p>
-          </div>
+                <!-- Feature 6: Native & Lightweight -->
+                <div class="glass-card rounded-3xl p-8 transition-all duration-300 opacity-0-initial stagger-6">
+                    <div class="feature-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-slate-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold text-slate-dark mb-3">Native & Lightweight</h3>
+                    <p class="text-slate-blue/70 leading-relaxed">
+                        Built with Swift and SwiftUI. No Electron, no bloat. Just a tiny, efficient native app.
+                    </p>
+                </div>
+            </div>
         </div>
-
-        <div class="menubar-preview">
-          <h3
-            style="
-              text-align: center;
-              margin-bottom: 20px;
-              font-size: 20px;
-              color: var(--dark);
-            "
-          >
-            Lives in Your Menu Bar
-          </h3>
-          <div
-            style="
-              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-              border-radius: 15px;
-              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            "
-          >
-            <img
-              src="demo.png"
-              alt="CaffeineMate Menu Bar Interface"
-              style="
-                width: 100%;
-                max-width: 660px;
-                display: block;
-                margin: 0 auto;
-                border-radius: 15px;
-              "
-            />
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="how-it-works">
-      <div class="container">
-        <h2 class="section-title">How It Works</h2>
-        <div class="steps">
-          <div class="step">
-            <div class="step-number">1</div>
-            <h3 class="step-title">Download & Install</h3>
-            <p class="step-description">
-              Download CaffeineMate and drag it to your Applications folder.
-              Launch it once.
-            </p>
-          </div>
-          <div class="step">
-            <div class="step-number">2</div>
-            <h3 class="step-title">Find in Menu Bar</h3>
-            <p class="step-description">
-              Look for the coffee cup icon in your menu bar at the top of your
-              screen.
-            </p>
-          </div>
-          <div class="step">
-            <div class="step-number">3</div>
-            <h3 class="step-title">Click to Activate</h3>
-            <p class="step-description">
-              Click the icon to toggle. Customize settings from the menu. That's
-              it!
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Installation Section -->
+    <section id="installation" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-slate-dark mb-4">
+                    Install in seconds
+                </h2>
+                <p class="text-xl text-slate-blue/70">
+                    Get started with a single command using Homebrew
+                </p>
+            </div>
 
-    <!-- CTA Section -->
-    <section class="cta" id="download">
-      <div class="container">
-        <h2>Ready to Stay Awake?</h2>
-        <p>
-          Download CaffeineMate today. It's free, open source, and built for
-          Mac.
-        </p>
-        <a
-          href="https://github.com/eddmann/CaffeineMate/releases/tag/v1.0.0"
-          class="cta-btn"
-          target="_blank"
-          >Download CaffeineMate</a
-        >
-        <p style="margin-top: 20px; font-size: 14px; opacity: 0.8">
-          Requires macOS 11.0 (Big Sur) or later
-        </p>
-      </div>
+            <!-- Terminal -->
+            <div class="terminal rounded-2xl overflow-hidden max-w-2xl mx-auto opacity-0-initial">
+                <!-- Terminal header -->
+                <div class="flex items-center gap-3 px-5 py-4 bg-gradient-to-b from-white/[0.08] to-transparent border-b border-white/[0.05]">
+                    <div class="terminal-dots flex gap-2">
+                        <span class="bg-[#ff5f57]"></span>
+                        <span class="bg-[#febc2e]"></span>
+                        <span class="bg-[#28c840]"></span>
+                    </div>
+                    <span class="text-white/40 text-sm font-medium ml-2">Terminal</span>
+                </div>
+
+                <!-- Terminal content -->
+                <div class="flex items-center py-4 pl-4 pr-2 md:pl-6 md:pr-4">
+                    <div class="relative flex-1 overflow-hidden">
+                        <div class="overflow-x-auto scrollbar-hide">
+                            <div class="flex items-center gap-3 whitespace-nowrap pr-8">
+                                <span class="text-emerald-400 font-medium select-none">$</span>
+                                <code class="text-white/90 text-base md:text-lg tracking-wide">brew install eddmann/tap/caffeinemate</code>
+                            </div>
+                        </div>
+                        <div class="absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-[#2d3d4a] to-transparent pointer-events-none md:hidden"></div>
+                    </div>
+                    <button class="js-copy-command ml-2 p-2 rounded-lg hover:bg-white/10 transition-colors group flex-shrink-0"
+                            data-command="brew install eddmann/tap/caffeinemate" title="Copy to clipboard">
+                        <svg class="w-5 h-5 text-white/40 group-hover:text-white transition-colors copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                        <svg class="w-5 h-5 text-emerald-400 check-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <p class="text-center mt-8 text-slate-blue/60 text-sm">
+                Or download directly from
+                <a href="https://github.com/eddmann/CaffeineMate/releases" class="text-slate-blue hover:text-slate-dark underline underline-offset-2 transition-colors">GitHub Releases</a>
+            </p>
+        </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-      <div class="container">
-        <p>
-          &copy; 2025
-          <a href="https://eddmann.com" style="margin: 0; color: inherit"
-            >Edd Mann</a
-          >. Made with ☕ for Mac.
-        </p>
-        <div style="margin-top: 20px">
-          <a href="https://github.com/eddmann/CaffeineMate" target="_blank"
-            >GitHub</a
-          >
+    <footer class="py-12 px-6 border-t border-slate-blue/10">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="CaffeineMate" class="w-9 h-9 rounded-xl">
+                <span class="font-display font-semibold text-slate-dark text-lg">CaffeineMate</span>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <a href="https://github.com/eddmann/CaffeineMate" class="flex items-center gap-2 text-slate-blue/60 hover:text-slate-dark transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <span class="text-sm font-medium">GitHub</span>
+                </a>
+
+                <span class="text-slate-blue/20">|</span>
+
+                <span class="text-slate-blue/60 text-sm">
+                    Made by <a href="https://eddmann.com" class="text-slate-blue hover:text-slate-dark font-medium transition-colors">Edd Mann</a>
+                </span>
+            </div>
         </div>
-      </div>
     </footer>
 
     <script>
-      // Intersection Observer for fade-in animations
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px',
-      };
+        // Copy command buttons
+        document.querySelectorAll('.js-copy-command').forEach(button => {
+            button.addEventListener('click', () => {
+                const text = button.dataset.command;
+                navigator.clipboard.writeText(text);
 
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }
+                const copyIcon = button.querySelector('.copy-icon');
+                const checkIcon = button.querySelector('.check-icon');
+                copyIcon.classList.add('hidden');
+                checkIcon.classList.remove('hidden');
+
+                setTimeout(() => {
+                    copyIcon.classList.remove('hidden');
+                    checkIcon.classList.add('hidden');
+                }, 2000);
+            });
         });
-      }, observerOptions);
 
-      // Observe all fade-in elements
-      document.querySelectorAll('.fade-in').forEach(el => {
-        observer.observe(el);
-      });
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-      // Add parallax effect to hero icon
-      let lastScroll = 0;
-      window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        const heroIcon = document.querySelector('.hero-icon');
-        if (heroIcon && currentScroll < 500) {
-          heroIcon.style.transform = `translateY(${currentScroll * 0.3}px)`;
-        }
-        lastScroll = currentScroll;
-      });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('opacity-0-initial');
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.opacity-0-initial').forEach(el => {
+            observer.observe(el);
+        });
     </script>
-  </body>
+</body>
 </html>
